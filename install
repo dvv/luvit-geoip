@@ -121,9 +121,9 @@ END {
 	mkdir -p build
 	cd build
 	# fetch libGeoIP sources
-	V=1.4.7beta11
+	V=1.4.8
 	if ! test -f GeoIP-$V/libGeoIP/GeoIP.c; then
-		wget -qct3 http://geolite.maxmind.com/download/geoip/api/c/test/GeoIP-$V.tar.gz
+		wget -qct3 http://geolite.maxmind.com/download/geoip/api/c/GeoIP-$V.tar.gz
 		tar -xzpf GeoIP-$V.tar.gz
 	fi
 	# fetch currencies

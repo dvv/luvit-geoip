@@ -1,0 +1,13 @@
+#!/bin/sh
+F=build/GeoIP-1.4.8/libGeoIP/GeoIP.c
+fetch() {
+  echo 'return {'
+  sed -n '/ GeoIP_.* = {/,/};$/p' \
+    | sed -r 's/"\s+"//g' \
+    | sed -r 's/^.*GeoIP_([A-Za-z0-9_]+).*=\s*\{/\1 = {/'
+  echo '}'
+}
+
+fetch <$F >data.lua
+
+luvit -e 'require("fs").writeFileSync("1.lua", require("utils").dump(require("./data.lua")))'
